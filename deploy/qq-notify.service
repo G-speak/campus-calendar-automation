@@ -1,0 +1,17 @@
+[Unit]
+Description=QQ notifications to iCloud Calendar
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/campus-calendar-automation
+EnvironmentFile=/opt/campus-calendar-automation/.env
+Environment=TZ=Asia/Shanghai
+ExecStart=/opt/campus-calendar-automation/.venv/bin/python -u qq_notify.py
+Restart=always
+RestartSec=5
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
